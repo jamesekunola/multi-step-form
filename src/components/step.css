@@ -1,0 +1,48 @@
+/* steps component */
+
+.steps__container {
+  padding: 2rem 1.5rem;
+  width: 90%;
+  margin: -4rem auto 0;
+  border-radius: 0.5rem;
+  background-color: var(--White);
+}
+
+/* step one component styles */
+label {
+  color: var(--Marine-blue);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+label::first-letter {
+  text-transform: capitalize;
+}
+
+label p {
+  margin-bottom: 0;
+  font-size: 0.8rem;
+  color: var(--Strawberry-red);
+  display: none;
+}
+
+label p.visible {
+  display: block;
+}
+
+input {
+  display: block;
+  width: 100%;
+  padding: 0.9rem 0.7rem;
+  border-radius: 0.3rem;
+  margin: 0.3rem 0 1rem;
+  font-weight: 700;
+  color: var(--Marine-blue);
+  border: 1px solid var(--Light-gray);
+  outline: none;
+  transition: 0.3s;
+}
+
+input:focus {
+  border-color: var(--Purplish-blue);
+}
