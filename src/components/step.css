@@ -1,6 +1,12 @@
 /* steps component */
 
 .steps__container {
+  position: relative;
+  height: calc(100vh - 14rem);
+  border: 1px solid transparent;
+}
+
+.steps {
   padding: 2rem 1.5rem;
   width: 90%;
   margin: -4rem auto 0;
@@ -9,6 +15,7 @@
 }
 
 /* step one component styles */
+
 label {
   color: var(--Marine-blue);
   font-weight: 500;
@@ -37,6 +44,7 @@ input {
   border-radius: 0.3rem;
   margin: 0.3rem 0 1rem;
   font-weight: 700;
+  /* text-transform: capitalize; */
   color: var(--Marine-blue);
   border: 1px solid var(--Light-gray);
   outline: none;
@@ -45,4 +53,52 @@ input {
 
 input:focus {
   border-color: var(--Purplish-blue);
+}
+
+/* button component */
+
+.button__container {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 1rem 1.5rem;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: var(--White);
+}
+
+.button__container .separate {
+  justify-content: space-between;
+}
+
+.btn {
+  text-transform: capitalize;
+  padding: 0.5rem 1rem;
+  font-weight: 700;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.prev-btn {
+  background-color: transparent;
+  color: var(--Cool-gray);
+}
+
+.prev-btn:hover {
+  color: var(--Marine-blue);
+}
+
+.next-btn {
+  background-color: var(--Marine-blue);
+  color: var(--White);
+  justify-self: flex-end !important;
+}
+
+.next-btn:hover {
+  background-color: var(--Purplish-blue);
 }

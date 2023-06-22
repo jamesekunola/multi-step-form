@@ -42,3 +42,7 @@ p {
   color: var(--Cool-gray);
   margin-bottom: 1rem;
 }
+
+button {
+  cursor: pointer;
+}
