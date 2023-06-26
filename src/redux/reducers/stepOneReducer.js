@@ -7,8 +7,11 @@ const initialState = {
 };
 
 export const stepOneReducer = (state = initialState, action) => {
-  if (action === actions.SET_STEP_ONE_INPUT_VALUE) {
-    return state;
+  if (action.type === actions.SET_STEP_ONE_INPUT_VALUE) {
+    return {
+      ...state,
+      ...action.payload,
+    };
   }
   return state;
 };

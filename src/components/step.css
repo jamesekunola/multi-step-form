@@ -16,7 +16,7 @@
 
 /* step one component styles */
 
-label {
+.step__one__input-wrapper label {
   color: var(--Marine-blue);
   font-weight: 500;
   font-size: 0.9rem;
@@ -26,29 +26,30 @@ label::first-letter {
   text-transform: capitalize;
 }
 
-label p {
+.error {
   margin-bottom: 0;
   font-size: 0.8rem;
   color: var(--Strawberry-red);
-  display: none;
-}
-
-label p.visible {
   display: block;
+  text-align: right;
+  font-weight: 500;
 }
 
-input {
+.step__one__input-wrapper input {
   display: block;
   width: 100%;
   padding: 0.9rem 0.7rem;
   border-radius: 0.3rem;
   margin: 0.3rem 0 1rem;
   font-weight: 700;
-  /* text-transform: capitalize; */
   color: var(--Marine-blue);
   border: 1px solid var(--Light-gray);
   outline: none;
   transition: 0.3s;
+}
+
+.input__error {
+  border-color: var(--Strawberry-red);
 }
 
 input:focus {

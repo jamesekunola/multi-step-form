@@ -1,81 +1,110 @@
-// hooks
-import { useRef } from "react";
-// components
-import Buttons from "./Buttons";
-// css stylesheet
 import "./step.css";
+import { useState } from "react";
+import { validateSteponeForm } from "./validateSteponeForm";
 
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { nextStep, setStepOneInputValue } from "./../redux/actions/index";
 
 const StepOne = () => {
   const state = useSelector((state) => state.stepOneReducer);
   const { name, email, phone } = state;
-  // hooks
-  const nameRef = useRef(null);
-  const emailRef = useRef(null);
-  const phoneRef = useRef(null);
-
-  // set input values to initial store value
-  useEffect(() => {
-    nameRef.current.value = name;
-    emailRef.current.value = email;
-    phoneRef.current.value = phone;
+  const [values, setValues] = useState({
+    name,
+    email,
+    phone,
   });
+  const [error, setError] = useState({});
+  const dispatch = useDispatch();
 
-  const handleSubmit = () => {
-    console.log("submited");
+  // update input values
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setValues({ ...values, [name]: value });
+  };
+
+  // function to show next step
+  const displayNextStep = (e) => {
+    e.preventDefault();
+
+    // validate form
+    const validationError = validateSteponeForm(values);
+    setError(validationError);
+
+    if (Object.keys(validationError).length === 0) {
+      // store input value if there's no error in validation
+      dispatch(setStepOneInputValue(values));
+
+      // show next step
+      dispatch(nextStep());
+    }
   };
 
   return (
-    <div className="steps">
+    <article className="steps">
       <h2>Personal info</h2>
       <p>
         Personal info Please provide your name, email address, and phone number.
       </p>
 
-      <form onSubmit={handleSubmit} autocomplete="off">
-        <div>
-          <label htmlFor="name">
-            Name
-            <p className="error ">This field is required</p>
-            <input
-              type="text"
-              name="name"
-              placeholder=" e.g. Stephen king"
-              ref={nameRef}
-            />
-          </label>
+      <form autoComplete="off">
+        {/* name input */}
+        <div className="step__one__input-wrapper">
+          <label htmlFor="name">Name</label>
+          {error.name && <span className="error ">{error.name}</span>}
+          <input
+            className={error.name ? "input__error" : null}
+            type="text"
+            name="name"
+            value={values.name}
+            placeholder=" e.g. Stephen king"
+            onChange={handleChange}
+          />
         </div>
-        <div>
-          <label htmlFor="email">
-            Email Address
-            <p className="error ">This field is required</p>
-            <input
-              type="email"
-              name="email"
-              placeholder="e.g. stephenKing@lorem.com"
-              ref={emailRef}
-            />
-          </label>
+        {/* email input */}
+        <div className="step__one__input-wrapper">
+          <label htmlFor="email">Email Address</label>
+          {error.email && <span className="error ">{error.email}</span>}
+          <input
+            className={error.email ? "input__error" : null}
+            type="email"
+            name="email"
+            value={values.email}
+            placeholder="e.g. stephenKing@lorem.com"
+            onChange={handleChange}
+          />
         </div>
-        <div>
-          <label htmlFor="phone">
-            Phone Number
-            <p className="error ">This field is required</p>
-            <input
-              type="number"
-              name="phone"
-              placeholder="e.g. +1 234 567 890"
-              ref={phoneRef}
-            />
-          </label>
+        {/* phone input */}
+        <div className="step__one__input-wrapper">
+          <label htmlFor="phone">Phone Number</label>
+          {error.phone && <span className="error ">phone error</span>}
+          <input
+            className={error.phone ? "input__error" : null}
+            type="text"
+            name="phone"
+            placeholder="e.g. +1 234 567 890"
+            value={values.phone}
+            onChange={handleChange}
+          />
+        </div>
+
+        {/* next btn*/}
+        <div className="button__container">
+          <button className="btn next-btn" onClick={displayNextStep}>
+            Next step
+          </button>
         </div>
       </form>
-
-      <Buttons />
-    </div>
+    </article>
   );
 };
+
+{
+  /* <div className={`button__container ${stepIndex > 1 && "separate"}`}>
+  {stepIndex > 1 && <button className="btn prev-btn">Go back</button>}
+  <button className="btn next-btn" onClick={displayNextStep}>
+    {stepIndex === 3 ? "confirm" : "next step"}
+  </button>
+</div>; */
+}
 
 export default StepOne;

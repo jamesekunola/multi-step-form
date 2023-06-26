@@ -6,3 +6,15 @@ export const setStepOneInputValue = (userInfo) => {
     payload: userInfo,
   };
 };
+
+export const prevStep = () => {
+  return {
+    type: actions.PREV_STEP,
+  };
+};
+
+export const nextStep = () => {
+  return {
+    type: actions.NEXT_STEP,
+  };
+};

@@ -1,11 +1,11 @@
-import { useState } from "react";
 import FormSteps from "./components/form-steps/FormSteps";
 import Steps from "./components/Steps";
-import { Provider } from "react-redux";
-import { store } from "./redux/store";
+import { useSelector } from "react-redux";
 
 const App = () => {
-  const [stepIndex, setStepIndex] = useState(1);
+  const stepIndex = useSelector((state) => state.steps);
+
+  console.log(stepIndex);
 
   return (
     <section className={`container ${stepIndex === 4 ? "grid" : "grid-2"}`}>
