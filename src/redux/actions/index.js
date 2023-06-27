@@ -18,3 +18,10 @@ export const nextStep = () => {
     type: actions.NEXT_STEP,
   };
 };
+
+export const toggleAndUpdatePlanType = (period) => {
+  return {
+    type: actions.UPDATE_PERIOD,
+    payload: period,
+  };
+};

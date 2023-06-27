@@ -189,3 +189,45 @@ input:checked ~ .plan__tile {
 .period__switch.move {
   margin-left: 1.4rem;
 }
+
+/* step 3 */
+
+.add__ons__option label {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  margin-bottom: 1rem;
+  border: 1px solid var(--Light-gray);
+  border-radius: 0.3rem;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.add__ons__option label:has(input:checked) {
+  border-color: var(--Purplish-blue);
+  background-color: var(--Alabaster);
+}
+
+.add__ons__info {
+  flex: 1;
+}
+
+.add__ons__option label input[type="checkbox"] {
+  width: 1.3rem;
+  height: 1.3rem;
+  accent-color: var(--Purplish-blue);
+}
+
+.add__ons__option label p {
+  margin: 0;
+}
+
+.add__ons__option label h4 {
+  margin-bottom: 0.3rem;
+}
+
+.addOns__price {
+  color: var(--Purplish-blue);
+}
