@@ -47,3 +47,14 @@ p {
 button {
   cursor: pointer;
 }
+
+/* desktop  */
+
+@media screen and (min-width: 60rem) {
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+}
