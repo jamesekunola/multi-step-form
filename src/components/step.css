@@ -142,6 +142,10 @@ input:checked ~ .plan__tile {
   border-color: var(--Cool-gray);
 }
 
+.plan__tile h4 {
+  margin: 0;
+}
+
 .plan__tile p {
   margin-block: 0.15rem;
 }

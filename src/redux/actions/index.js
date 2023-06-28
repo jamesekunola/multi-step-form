@@ -25,3 +25,10 @@ export const toggleAndUpdatePlanType = (period) => {
     payload: period,
   };
 };
+
+export const toggleAddOnsPlans = (id) => {
+  return {
+    type: actions.UPDATE_ADDONS_PLANS,
+    payload: id,
+  };
+};

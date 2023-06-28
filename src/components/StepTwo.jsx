@@ -16,21 +16,18 @@ const plans = {
       text: "Arcade",
       price: "9",
       gift: "",
-      period: "mo",
     },
     {
       icon: advanceIcon,
       text: "Advance",
       price: "12",
       gift: "",
-      period: "mo",
     },
     {
       icon: proIcon,
       text: " Pro",
       price: "15",
       gift: "",
-      period: "mo",
     },
   ],
 
@@ -40,21 +37,18 @@ const plans = {
       text: "Arcade",
       price: "90",
       gift: "2 month free",
-      period: "yr",
     },
     {
       icon: advanceIcon,
       text: "Advance",
       price: "120",
       gift: "2 month free",
-      period: "yr",
     },
     {
       icon: proIcon,
       text: " Pro",
       price: "150",
       gift: "2 month free",
-      period: "yr",
     },
   ],
 };
@@ -62,7 +56,7 @@ const plans = {
 const StepTwo = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.stepTwoReducer);
-  const { displayedPeriod, name } = state;
+  const { displayedPeriod, name, period } = state;
 
   let displayedPeriodPlans =
     displayedPeriod === "Monthly" ? plans.monthly : plans.yearly;
@@ -82,6 +76,7 @@ const StepTwo = () => {
             displayedPeriod={displayedPeriod}
             dispatch={dispatch}
             toggleAndUpdatePlanType={toggleAndUpdatePlanType}
+            period={period}
           />
         ))}
 
@@ -94,8 +89,8 @@ const StepTwo = () => {
               dispatch(
                 toggleAndUpdatePlanType(
                   displayedPeriod === "Monthly"
-                    ? { displayedPeriod: "yearly" }
-                    : { displayedPeriod: "Monthly" }
+                    ? { displayedPeriod: "yearly", period: "yr" }
+                    : { displayedPeriod: "Monthly", period: "mo" }
                 )
               )
             }
