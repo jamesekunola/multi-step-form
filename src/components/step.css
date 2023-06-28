@@ -298,3 +298,27 @@ input:checked ~ .plan__tile {
   color: var(--Purplish-blue);
   font-size: 1.2rem;
 }
+
+/* summary */
+
+.summary__container {
+  padding-block: 2rem;
+  text-align: center;
+}
+
+.summary__container h1 {
+  font-weight: 700;
+  margin-block: 1.5rem;
+  font-size: 2rem;
+}
+
+.summary__container p {
+  line-height: 1.6rem;
+  max-width: 25rem;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.summary__container a {
+  color: var(--Cool-gray);
+}

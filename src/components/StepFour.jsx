@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { stepThreeReducer } from "./../redux/reducers/stepThreeReducer";
 import { nextStep, prevStep, changePlans } from "./../redux/actions";
 
 const StepFour = () => {
