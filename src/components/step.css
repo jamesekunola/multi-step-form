@@ -235,3 +235,66 @@ input:checked ~ .plan__tile {
 .addOns__price {
   color: var(--Purplish-blue);
 }
+
+/* step 4 */
+.plans__wrapper {
+  background-color: var(--Magnolia);
+  padding: 1.5rem 1rem;
+  border-radius: 0.3rem;
+}
+
+.step__check_container h4,
+.step__check_container p {
+  margin: 0;
+}
+
+.step__check__plan {
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--Light-gray);
+}
+
+.step__check__plan strong {
+  color: var(--Marine-blue);
+}
+
+.step__check__plan button {
+  background-color: transparent;
+  border: none;
+  text-decoration: underline;
+  font-weight: 500;
+  color: var(--Cool-gray);
+  padding-top: 0.3rem;
+  transition: 0.3s;
+}
+
+.step__check__plan button:hover {
+  color: var(--Purplish-blue);
+}
+
+.step__check__plan,
+.step__check__addOns-plans,
+.price__total__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.step__check__addOns-plans {
+  margin-top: 1rem;
+}
+
+.step__check__addOns-plans p:last-child {
+  color: var(--Marine-blue);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.price__total__container {
+  display: flex;
+  padding: 1.5rem 1rem 0;
+}
+
+.price__total__container strong {
+  color: var(--Purplish-blue);
+  font-size: 1.2rem;
+}

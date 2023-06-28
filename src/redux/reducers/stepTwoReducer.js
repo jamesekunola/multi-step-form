@@ -10,7 +10,6 @@ const initialState = {
 
 export const stepTwoReducer = (state = initialState, action) => {
   if (action.type === actions.UPDATE_PERIOD) {
-    console.log(action.payload);
     return {
       ...state,
       ...action.payload,

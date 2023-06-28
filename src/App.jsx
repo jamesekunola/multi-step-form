@@ -7,7 +7,7 @@ const App = () => {
 
   return (
     <section className={`container ${stepIndex === 4 ? "grid" : "grid-2"}`}>
-      {stepIndex < 4 && <FormSteps stepIndex={stepIndex} />}
+      <FormSteps stepIndex={stepIndex} />
       <Steps stepIndex={stepIndex} />
     </section>
   );

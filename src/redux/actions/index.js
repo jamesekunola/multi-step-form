@@ -32,3 +32,9 @@ export const toggleAddOnsPlans = (id) => {
     payload: id,
   };
 };
+
+export const changePlans = () => {
+  return {
+    type: actions.CHANGE_PLANS,
+  };
+};

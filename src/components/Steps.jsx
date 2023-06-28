@@ -5,6 +5,7 @@ import "./step.css";
 import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
 import StepThree from "./StepThree";
+import StepFour from "./StepFour";
 import Summary from "./Summary";
 
 const Steps = ({ stepIndex }) => {
@@ -13,7 +14,8 @@ const Steps = ({ stepIndex }) => {
       {stepIndex === 1 && <StepOne />}
       {stepIndex === 2 && <StepTwo />}
       {stepIndex === 3 && <StepThree />}
-      {stepIndex === 4 && <Summary />}
+      {stepIndex === 4 && <StepFour />}
+      {stepIndex === 5 && <Summary />}
     </div>
   );
 };

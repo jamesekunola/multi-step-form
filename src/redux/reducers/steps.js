@@ -8,6 +8,10 @@ export const steps = (state = 1, action) => {
     case actions.PREV_STEP:
       return state - 1;
 
+    case actions.CHANGE_PLANS:
+      console.log("change btn clicked");
+      return 2;
+
     default:
       return state;
   }
