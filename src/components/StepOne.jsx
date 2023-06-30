@@ -1,6 +1,6 @@
 import "./step.css";
 import { useState } from "react";
-import { validateSteponeForm } from "./validateSteponeForm";
+import { validateInputValue } from "./validateInputValue";
 
 import { useSelector, useDispatch } from "react-redux";
 import { nextStep, setStepOneInputValue } from "./../redux/actions/index";
@@ -20,6 +20,9 @@ const StepOne = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
+
+    // stop error from showing once user start typing
+    setError((prevError) => ({ ...prevError, [name]: null }));
   };
 
   // function to show next step
@@ -27,7 +30,7 @@ const StepOne = () => {
     e.preventDefault();
 
     // validate form
-    const validationError = validateSteponeForm(values);
+    const validationError = validateInputValue(values);
     setError(validationError);
 
     if (Object.keys(validationError).length === 0) {
@@ -97,14 +100,5 @@ const StepOne = () => {
     </article>
   );
 };
-
-{
-  /* <div className={`button__container ${stepIndex > 1 && "separate"}`}>
-  {stepIndex > 1 && <button className="btn prev-btn">Go back</button>}
-  <button className="btn next-btn" onClick={displayNextStep}>
-    {stepIndex === 3 ? "confirm" : "next step"}
-  </button>
-</div>; */
-}
 
 export default StepOne;
