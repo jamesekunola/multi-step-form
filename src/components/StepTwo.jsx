@@ -68,18 +68,19 @@ const StepTwo = () => {
 
       <div className="plans__options">
         {/* plans */}
-        {displayedPeriodPlans.map((plan) => (
-          <PlansRadioBtn
-            key={plan.text}
-            {...plan}
-            name={name}
-            displayedPeriod={displayedPeriod}
-            dispatch={dispatch}
-            toggleAndUpdatePlanType={toggleAndUpdatePlanType}
-            period={period}
-          />
-        ))}
-
+        <div className="plans__radioBtn__container">
+          {displayedPeriodPlans.map((plan) => (
+            <PlansRadioBtn
+              key={plan.text}
+              {...plan}
+              name={name}
+              displayedPeriod={displayedPeriod}
+              dispatch={dispatch}
+              toggleAndUpdatePlanType={toggleAndUpdatePlanType}
+              period={period}
+            />
+          ))}
+        </div>
         {/* toggle btn */}
         <div className="period__toggle__container">
           <h4>Monthly</h4>
