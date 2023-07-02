@@ -73,7 +73,7 @@ label::first-letter {
   width: 100%;
   padding: 0.9rem 0.7rem;
   border-radius: 0.3rem;
-  margin: 0.3rem 0 1rem;
+  margin: 0.5rem 0 1rem;
   font-weight: 700;
   color: var(--Marine-blue);
   border: 1px solid var(--Light-gray);
@@ -81,8 +81,11 @@ label::first-letter {
   transition: 0.3s;
 }
 
-input.input__error {
-  border-color: var(--Strawberry-red);
+input.input__error,
+.PhoneInputInput.input__error input {
+  border-color: var(
+    --Strawberry-red
+  ) !important; /* important used to overwrite input focus border color */
 }
 
 input:focus {
@@ -394,7 +397,7 @@ input:checked ~ .plan__tile {
   .plan__tile {
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: flex-start;
     padding: 1rem;
     margin-top: 1rem;
   }

@@ -1,13 +1,16 @@
 import "./step.css";
 import { useState } from "react";
 import { validateInputValue } from "./validateInputValue";
-
 import { useSelector, useDispatch } from "react-redux";
-import { nextStep, setStepOneInputValue } from "./../redux/actions/index";
+import { nextStep, storeStepOneFormData } from "./../redux/actions/index";
+//input  phone number library
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
 
 const StepOne = () => {
   const state = useSelector((state) => state.stepOneReducer);
-  const { name, email, phone } = state;
+  const { name, email, phone } = state; // destructing value from stepOne reducer
+
   const [values, setValues] = useState({
     name,
     email,
@@ -25,8 +28,8 @@ const StepOne = () => {
     setError((prevError) => ({ ...prevError, [name]: null }));
   };
 
-  // function to show next step
-  const displayNextStep = (e) => {
+  // validate form and proceed to next step.
+  const validateAndProceedToNextStep = (e) => {
     e.preventDefault();
 
     // validate form
@@ -35,7 +38,7 @@ const StepOne = () => {
 
     if (Object.keys(validationError).length === 0) {
       // store input value if there's no error in validation
-      dispatch(setStepOneInputValue(values));
+      dispatch(storeStepOneFormData(values));
 
       // show next step
       dispatch(nextStep());
@@ -53,7 +56,7 @@ const StepOne = () => {
         {/* name input */}
         <div className="step__one__input-wrapper">
           <label htmlFor="name">Name</label>
-          {error.name && <span className="error ">{error.name}</span>}
+          {error.name && <span className="error">{error.name}</span>}
           <input
             className={error.name ? "input__error" : null}
             type="text"
@@ -61,8 +64,10 @@ const StepOne = () => {
             value={values.name}
             placeholder=" e.g. Stephen king"
             onChange={handleChange}
+            autoFocus
           />
         </div>
+
         {/* email input */}
         <div className="step__one__input-wrapper">
           <label htmlFor="email">Email Address</label>
@@ -76,23 +81,30 @@ const StepOne = () => {
             onChange={handleChange}
           />
         </div>
+
         {/* phone input */}
         <div className="step__one__input-wrapper">
           <label htmlFor="phone">Phone Number</label>
-          {error.phone && <span className="error ">phone error</span>}
-          <input
-            className={error.phone ? "input__error" : null}
-            type="text"
-            name="phone"
+          {error.phone && <span className="error ">{error.phone}</span>}
+
+          <PhoneInput
+            className={`PhoneInputInput ${error.phone && "input__error "}`}
             placeholder="e.g. +1 234 567 890"
             value={values.phone}
-            onChange={handleChange}
+            onChange={(value) => {
+              setValues({ ...values, phone: value });
+              setError({ ...error, phone: null });
+            }}
+            keyboardtype="phone-pad"
           />
         </div>
 
         {/* next btn*/}
         <div className="button__container">
-          <button className="btn next-btn" onClick={displayNextStep}>
+          <button
+            className="btn next-btn"
+            onClick={validateAndProceedToNextStep}
+          >
             Next step
           </button>
         </div>

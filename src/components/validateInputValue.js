@@ -1,28 +1,34 @@
+import { isValidPhoneNumber } from "react-phone-number-input";
+
 export const validateInputValue = (values) => {
   let error = {};
+  const { name, email, phone } = values;
+  // regex for name and email
+  const regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  const regName = /^[A-Za-z]+(?:\s[A-Za-z]+)?\s[A-Za-z]+$/;
 
-  if (!values.name) {
+  if (!name) {
     error.name = "This field is required";
   }
-  if (parseFloat(values.name)) {
-    error.name = "Enter a real name e.g john doe";
+
+  if (name && !regName.test(name)) {
+    error.name = "Invalid input. Enter full name e.g john doe";
   }
-  if (
-    !/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
-      values.email
-    )
-  ) {
-    error.email = "incorrect email address";
-  }
-  if (!values.email) {
+
+  if (!email) {
     error.email = "This field is required";
   }
 
-  if (!values.phone) {
+  if (email && !regEmail.test(email)) {
+    error.email = "Invalid email address";
+  }
+
+  if (!phone) {
     error.phone = "This field is required";
   }
-  if (isNaN(parseInt(values.phone))) {
-    error.phone = "phone number required";
+
+  if (phone && !isValidPhoneNumber(phone)) {
+    error.phone = "Invalid phone number";
   }
 
   return error;
