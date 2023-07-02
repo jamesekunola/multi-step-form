@@ -95,16 +95,11 @@ input:focus {
 /* button component */
 
 .button__container {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  padding: 1rem 1.5rem;
-
   display: flex;
   justify-content: flex-end;
   align-items: center;
   background-color: var(--White);
+  margin-top: 2rem;
 }
 
 .button__container.separate {
@@ -413,9 +408,16 @@ input:checked ~ .plan__tile {
 
   /* button */
   .button__container {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 1rem 1.5rem;
+
     bottom: 0;
     width: 100%;
     padding-inline: 3rem;
+    margin-top: 0;
   }
 
   .btn {
