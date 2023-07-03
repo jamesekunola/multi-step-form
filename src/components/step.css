@@ -1,8 +1,6 @@
 /* steps component */
 
 .steps__container {
-  /* position: relative; */
-  /* min-height: calc(100vh - 14rem); */
   border: 1px solid transparent;
 }
 
@@ -14,7 +12,7 @@
   background-color: var(--White);
 }
 
-/* step one component styles */
+/* step one */
 
 .step__one__input-wrapper label {
   color: var(--Marine-blue);
@@ -86,6 +84,11 @@ input.input__error,
   border-color: var(
     --Strawberry-red
   ) !important; /* important used to overwrite input focus border color */
+}
+
+.phone_label > div {
+  border: 1px solid #ddd;
+  background-color: red;
 }
 
 input:focus {
@@ -242,6 +245,10 @@ input:checked ~ .plan__tile {
   border-radius: 0.3rem;
   padding: 1rem;
   cursor: pointer;
+
+  position: relative;
+  padding-left: 1.5rem;
+  cursor: pointer;
 }
 
 .add__ons__option label:has(input:checked) {
@@ -253,10 +260,30 @@ input:checked ~ .plan__tile {
   flex: 1;
 }
 
-.add__ons__option label input[type="checkbox"] {
-  width: 1.3rem;
-  height: 1.3rem;
-  accent-color: var(--Purplish-blue);
+.add__ons__option input[type="checkbox"] {
+  width: 1.2rem;
+  height: 1.2rem;
+  position: relative;
+  visibility: hidden;
+  cursor: pointer;
+}
+
+.add__ons__option input[type="checkbox"]::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--Cool-gray);
+  visibility: visible;
+}
+
+.add__ons__option input[type="checkbox"]:checked::after {
+  background: var(--Purplish-blue) url("../icons/icon-checkmark.svg") no-repeat
+    center;
+}
+
+.add__ons__option label::before:has(input[type="checkbox"]:checked) {
+  background: var(--Purplish-blue) url("../icons/icon-checkmark.svg");
 }
 
 .add__ons__option label p {

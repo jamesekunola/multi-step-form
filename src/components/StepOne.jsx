@@ -16,6 +16,7 @@ const StepOne = () => {
     email,
     phone,
   });
+
   const [error, setError] = useState({});
   const dispatch = useDispatch();
 
@@ -84,7 +85,9 @@ const StepOne = () => {
 
         {/* phone input */}
         <div className="step__one__input-wrapper">
-          <label htmlFor="phone">Phone Number</label>
+          <label htmlFor="phone" className="phone_label">
+            Phone Number
+          </label>
           {error.phone && <span className="error ">{error.phone}</span>}
 
           <PhoneInput
