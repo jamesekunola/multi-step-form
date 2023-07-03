@@ -4,19 +4,24 @@ import { nextStep, prevStep, changePlans } from "./../redux/actions";
 
 const StepFour = () => {
   const dispatch = useDispatch();
-  const selectedPlans = useSelector((state) => state.stepTwoReducer);
+  const plans = useSelector((state) => state.stepTwoReducer);
   const addOnsPlans = useSelector((state) => state.stepThreeReducer);
 
   const selectedAddOnsPlans = addOnsPlans.filter((plan) => plan.checked); // add-ons plans selected by user
 
-  const { displayedPeriod, name, price, period } = selectedPlans; //destructuring values from selected plans
+  const selectedPlans = plans.filter((plan) => plan.checked); //selected plans by user
+  const { planDuration, price, text } = selectedPlans[0];
+  const selectedPlanPrice =
+    planDuration === "monthly" ? price.monthly : price.yearly;
+  const period = planDuration === "monthly" ? "mo" : "yr";
 
   // calculate total price of selected plans;
   const totalPrice = [
-    selectedPlans.price,
-    ...selectedAddOnsPlans.map((plan) =>
-      displayedPeriod === "Monthly" ? plan.price.monthly : plan.price.yearly
-    ),
+    selectedPlanPrice,
+    ...selectedAddOnsPlans.map((plan) => {
+      const { price } = plan;
+      return planDuration === "Monthly" ? price.monthly : price.yearly;
+    }),
   ].reduce((total, amount) => {
     return (total += parseInt(amount));
   }, 0);
@@ -31,22 +36,22 @@ const StepFour = () => {
         <div className="plans__wrapper">
           <div className="step__check__plan">
             <div>
-              <h4>{`${name} (${displayedPeriod})`}</h4>
+              <h4>{`${text} (${planDuration})`}</h4>
               <button onClick={() => dispatch(changePlans())}>Change</button>
             </div>
             <p>
               <strong>
-                ${price}/{period}
+                ${selectedPlanPrice}/{period}
               </strong>
             </p>
           </div>
 
           {/* add-ons plans */}
           {selectedAddOnsPlans.map((plan) => {
-            const { type, price } = plan; //
+            const { type, price } = plan;
 
             const addOnsPrice =
-              displayedPeriod === "Monthly" ? price.monthly : price.yearly; // display price based on plans selected by user
+              planDuration === "Monthly" ? price.monthly : price.yearly; // display price based on plans selected by user
 
             return (
               <div className="step__check__addOns-plans" key={plan.id}>
@@ -63,10 +68,7 @@ const StepFour = () => {
         <div className="price__total__container">
           <p>
             Total (per{" "}
-            {displayedPeriod
-              .substring(0, displayedPeriod.length - 2)
-              .toLowerCase()}
-            )
+            {planDuration.substring(0, planDuration.length - 2).toLowerCase()})
           </p>
           <p>
             <strong>

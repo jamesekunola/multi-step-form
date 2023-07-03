@@ -7,6 +7,13 @@ export const storeStepOneFormData = (userInfo) => {
   };
 };
 
+export const updateSelectedPlans = (id) => {
+  return {
+    type: actions.UPDATE_SELECTED_PLANS,
+    payload: id,
+  };
+};
+
 export const prevStep = () => {
   return {
     type: actions.PREV_STEP,
@@ -19,10 +26,10 @@ export const nextStep = () => {
   };
 };
 
-export const toggleAndUpdatePlanType = (period) => {
+export const togglePlansDuration = (duration) => {
   return {
-    type: actions.UPDATE_PERIOD,
-    payload: period,
+    type: actions.TOGGLE_PLANS_DURATION,
+    payload: duration,
   };
 };
 

@@ -8,7 +8,8 @@ const StepThree = () => {
   const stepTwoState = useSelector((state) => state.stepTwoReducer);
   const addOnsPlans = useSelector((state) => state.stepThreeReducer);
 
-  const { displayedPeriod, period } = stepTwoState;
+  const { planDuration } = stepTwoState[0];
+  const plansDurationAlias = planDuration === "monthly" ? "mo" : "yr";
 
   return (
     <article className="steps">
@@ -19,7 +20,7 @@ const StepThree = () => {
         {addOnsPlans.map((plan) => {
           const { type, price, desc, checked, id } = plan;
           const subscriptionPrice =
-            displayedPeriod === "Monthly" ? price.monthly : price.yearly;
+            planDuration === "monthly" ? price.monthly : price.yearly;
 
           return (
             <div className="add__ons__option" key={type}>
@@ -38,7 +39,7 @@ const StepThree = () => {
                 </div>
 
                 <p className="addOns__price">
-                  ${subscriptionPrice}/{period}
+                  ${subscriptionPrice}/{plansDurationAlias}
                 </p>
               </label>
             </div>

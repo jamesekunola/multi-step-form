@@ -1,65 +1,12 @@
-import { nextStep, prevStep, toggleAndUpdatePlanType } from "../redux/actions";
+import { nextStep, prevStep, togglePlansDuration } from "../redux/actions";
 import PlansRadioBtn from "./PlansRadioBtn";
-
-// icons
-import arcadeIcon from "../icons/icon-arcade.svg";
-import advanceIcon from "../icons/icon-advanced.svg";
-import proIcon from "../icons/icon-pro.svg";
 // css
 import "./step.css";
 import { useSelector, useDispatch } from "react-redux";
 
-const plans = {
-  monthly: [
-    {
-      icon: arcadeIcon,
-      text: "Arcade",
-      price: "9",
-      gift: "",
-    },
-    {
-      icon: advanceIcon,
-      text: "Advance",
-      price: "12",
-      gift: "",
-    },
-    {
-      icon: proIcon,
-      text: " Pro",
-      price: "15",
-      gift: "",
-    },
-  ],
-
-  yearly: [
-    {
-      icon: arcadeIcon,
-      text: "Arcade",
-      price: "90",
-      gift: "2 month free",
-    },
-    {
-      icon: advanceIcon,
-      text: "Advance",
-      price: "120",
-      gift: "2 month free",
-    },
-    {
-      icon: proIcon,
-      text: " Pro",
-      price: "150",
-      gift: "2 month free",
-    },
-  ],
-};
-
 const StepTwo = () => {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.stepTwoReducer);
-  const { displayedPeriod, name, period } = state;
-
-  let displayedPeriodPlans =
-    displayedPeriod === "Monthly" ? plans.monthly : plans.yearly;
+  const plans = useSelector((state) => state.stepTwoReducer);
 
   return (
     <article className="steps">
@@ -69,18 +16,16 @@ const StepTwo = () => {
       <div className="plans__options">
         {/* plans */}
         <div className="plans__radioBtn__container">
-          {displayedPeriodPlans.map((plan) => (
+          {plans.map((plan, index) => (
             <PlansRadioBtn
               key={plan.text}
               {...plan}
-              name={name}
-              displayedPeriod={displayedPeriod}
               dispatch={dispatch}
-              toggleAndUpdatePlanType={toggleAndUpdatePlanType}
-              period={period}
+              index={index}
             />
           ))}
         </div>
+
         {/* toggle btn */}
         <div className="period__toggle__container">
           <h4>Monthly</h4>
@@ -88,17 +33,15 @@ const StepTwo = () => {
             className="switch__wrapper"
             onClick={() =>
               dispatch(
-                toggleAndUpdatePlanType(
-                  displayedPeriod === "Monthly"
-                    ? { displayedPeriod: "yearly", period: "yr" }
-                    : { displayedPeriod: "Monthly", period: "mo" }
+                togglePlansDuration(
+                  plans[0].planDuration === "monthly" ? "yearly" : "monthly"
                 )
               )
             }
           >
             <span
               className={`period__switch ${
-                displayedPeriod === "yearly" && "move"
+                plans[0].planDuration === "yearly" && "move"
               }`}
             ></span>
           </div>

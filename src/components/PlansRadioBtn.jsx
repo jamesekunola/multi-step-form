@@ -1,15 +1,19 @@
+import { updateSelectedPlans } from "../redux/actions";
+
 const PlansRadioBtn = ({
-  name,
-  text,
   icon,
+  text,
   price,
   gift,
-  period,
-  displayedPeriod,
+  checked,
+  planDuration,
+  index,
   dispatch,
-  toggleAndUpdatePlanType,
 }) => {
-  const selectedPlansValues = { name: text, price, period, gift };
+  const plansDurationPrice =
+    planDuration === "monthly" ? price.monthly : price.yearly;
+  const period = planDuration === "monthly" ? "mo" : "yr";
+
   return (
     <div>
       <div className="plan" key={text}>
@@ -18,20 +22,20 @@ const PlansRadioBtn = ({
           name="plan"
           id={text}
           value={text}
-          checked={name === text}
-          onChange={() =>
-            dispatch(toggleAndUpdatePlanType({ ...selectedPlansValues }))
-          }
+          checked={checked}
+          onChange={() => dispatch(updateSelectedPlans(text))}
         />
         <div className="plan__tile">
           <img src={icon} alt={`${text} icon`} />
           <label htmlFor={text}>
             <h4>{text}</h4>
             <p>
-              ${price}/{period}
+              ${plansDurationPrice}/{period}
             </p>
-            {displayedPeriod === "yearly" && (
-              <p className="gift__text">{gift}</p>
+            {planDuration === "yearly" && (
+              <p className="gift__text">
+                {planDuration === "yearly" && gift.yearly}
+              </p>
             )}
           </label>
         </div>
